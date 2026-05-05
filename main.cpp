@@ -59,8 +59,7 @@ struct graf_neponderat
         dp[start]=0;
         while(!q.empty())
         {
-            int p=q.front();
-            q.pop();
+            int p=q.front(); q.pop();
             for(int i : v[p]) if(dp[i]>dp[p]+1)
                 {
                     dp[i]=dp[p]+1;
@@ -114,8 +113,7 @@ struct graf_ponderat
         dp[start]=0;
         while(!pq.empty())
         {
-            auto [d,p]=pq.top();
-            pq.pop();
+            auto [d,p]=pq.top(); pq.pop();
             if(d>=dp[p]) continue;
             for(auto [i,c] : v[p]) if(dp[i]>dp[p]+c)
                 {
@@ -148,7 +146,7 @@ struct arbore
     }
     inline int salt(int x, int k)
     {
-        for(int i=20; i>0; i--)
+        for(int i=20; i>=0; i--)
             if(k & (1<<i)) x=t[i][x];
         return x;
     }
