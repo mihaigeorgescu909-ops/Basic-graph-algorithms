@@ -52,7 +52,7 @@ struct graf_neponderat // graful in care muchiile nu au cost
     inline void bfs(int start) // algoritm iterativ de parcurgere "breadth-first"
     {
         vector <int> dp(n+1,0);
-        queue <int> q;  // se va folosi o structura de tip coada pentru a salva nodurile ce urmeaza a fi vizitate
+        queue <int> q;  // se va folosi o structura de tip coada pentru a memora nodurile ce urmeaza a fi vizitate
         for(int i=1; i<=n; i++)
             dp[i]=inf;
         q.push(start);
