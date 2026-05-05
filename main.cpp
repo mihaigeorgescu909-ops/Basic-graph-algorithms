@@ -23,7 +23,7 @@ struct graf_neponderat // graful in care muchiile nu au cost
 {
     int n,m;
     vector < vector <int> > v;
-    inline void read()
+    inline void read() // citire
     {
         cin>>n>>m;
         v.assign(n+1, {});
@@ -36,7 +36,7 @@ struct graf_neponderat // graful in care muchiile nu au cost
         }
     }
     /// DFS
-    inline void dfs(int start)
+    inline void dfs(int start) // algoritm recursiv de parcurgere "depth-first"
     {
         vector <int> viz(n+1,0);
         function <void(int)> f=[&](int nod)
@@ -49,10 +49,10 @@ struct graf_neponderat // graful in care muchiile nu au cost
     }
 
     /// BFS
-    inline void bfs(int start)
+    inline void bfs(int start) // algoritm iterativ de parcurgere "breadth-first"
     {
         vector <int> dp(n+1,0);
-        queue <int> q;
+        queue <int> q;  // se va folosi o structura de tip coada pentru a salva nodurile ce urmeaza a fi vizitate
         for(int i=1; i<=n; i++)
             dp[i]=inf;
         q.push(start);
@@ -87,7 +87,7 @@ struct graf_ponderat // graful in care muchiile au cost
     }
     /// Roy-Warshall pentru grafuri cu numar mic de noduri
     vector < vector <int> > d;
-    inline void roy()
+    inline void roy() // algoritm in complexitate O(n^3) pentru calcularea tuturor distantelor minime din graf
     {
         d.assign(n+1, vector <int>(n+1,0));
         for(int i=1; i<=n; i++)
@@ -106,14 +106,14 @@ struct graf_ponderat // graful in care muchiile au cost
     inline void dijkstra(int start)
     {
         vector <int> dp(n+1,0);
-        priority_queue < pii, vector <pii>, greater <pii> > pq;
+        priority_queue < pii, vector <pii>, greater <pii> > pq; // se foloseste o structura de tip priority queue pentru a obtine complexitatea O(n*log(n))
         pq.push({0,start});
         for(int i=1; i<=n; i++)
             dp[i]=inf;
         dp[start]=0;
         while(!pq.empty())
         {
-            auto [d,p]=pq.top(); pq.pop();
+            auto [d,p]=pq.top(); pq.pop(); // nodurile aflate la distanta minima fata de sursa vor fi vizitate primele, pentru a evita vizitarea aceluiasi nod de mai multe ori decat este necesar
             if(d>=dp[p]) continue;
             for(auto [i,c] : v[p]) if(dp[i]>dp[p]+c)
                 {
@@ -142,12 +142,12 @@ struct arbore
     {
         for(int i=1; i<20; i++)
             for(int j=1; j<=n; j++)
-                t[i][j]=t[i-1][t[i-1][j]];
+                t[i][j]=t[i-1][t[i-1][j]]; // ridicarea la putere a structurii t
     }
     inline int salt(int x, int k)
     {
         for(int i=20; i>=0; i--)
-            if(k & (1<<i)) x=t[i][x];
+            if(k & (1<<i)) x=t[i][x]; // salturi de lungime putere de 2
         return x;
     }
 };
