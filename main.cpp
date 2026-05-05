@@ -19,7 +19,7 @@ using namespace std;
 /// Pentru a reprezenta grafurile in memorie vom folosi liste de adiacente
 /// implementate folosind containerul std::vector
 
-struct graf_neponderat
+struct graf_neponderat // graful in care muchiile nu au cost
 {
     int n,m;
     vector < vector <int> > v;
@@ -69,7 +69,7 @@ struct graf_neponderat
     }
 };
 
-struct graf_ponderat
+struct graf_ponderat // graful in care muchiile au cost
 {
     int n,m;
     vector < vector <pii> > v;
